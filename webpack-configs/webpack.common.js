@@ -45,13 +45,13 @@ module.exports = (env) => {
                     },
                 },
                 {
-                    test: /\.css$/i,
-                    exclude: /\.module\.css$/,
-                    use: [MiniCssExtractPlugin.loader, 'css-loader'],
+                    test: /\.less$/i,
+                    exclude: /\.module\.less$/,
+                    use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
                 },
                 // Enable CSS module for *.module.css fiels.
                 {
-                    test: /\.module\.css$/,
+                    test: /\.module\.less$/,
                     use: [
                         MiniCssExtractPlugin.loader,
                         {
@@ -60,6 +60,7 @@ module.exports = (env) => {
                                 modules: true,
                             },
                         },
+                        'less-loader',
                     ],
                 },
             ],
