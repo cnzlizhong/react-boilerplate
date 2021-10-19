@@ -4,7 +4,7 @@ const helpers = require('./helpers');
 
 module.exports = {
     mode: 'development',
-    entry: './src/index.jsx',
+    entry: './src/index.tsx',
     output: {
         path: helpers.root('dist'),
         publicPath: '/',
