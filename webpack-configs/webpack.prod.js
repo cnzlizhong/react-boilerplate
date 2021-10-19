@@ -5,7 +5,7 @@ const helpers = require('./helpers');
 
 module.exports = {
     mode: 'production',
-    entry: './src/index.jsx',
+    entry: './src/index.tsx',
     output: {
         path: helpers.root('build'),
         publicPath: '/',

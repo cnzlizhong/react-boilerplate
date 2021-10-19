@@ -4,14 +4,17 @@ module.exports = {
         browser: true,
         es2021: true,
     },
+    parser: '@typescript-eslint/parser', // Specifies the ESLint parser
     extends: [
         'airbnb', // Uses the rules from eslint-config-airbnb
         'airbnb/hooks', // Uses the rules for React Hooks from eslint-config-airbnb
         'eslint:recommended', // Uses the recommended rules from eslint standard
         'plugin:react/recommended', // Uses the recommended rules from @eslint-plugin-react
+        'plugin:@typescript-eslint/recommended', // Uses the recommended rules from @typescript-eslint/eslint-plugin
+        'plugin:import/typescript', // Uses the rules from eslint-plugin-import (included in react-scripts)
         'plugin:prettier/recommended', // Uses the recommended rules from eslint-plugin-prettier
     ],
-    plugins: ['prettier'],
+    plugins: ['@typescript-eslint', 'prettier'],
     parserOptions: {
         ecmaVersion: 12, // Allows for the parsing of modern ECMAScript features
         sourceType: 'module', // Allows for the use of imports
@@ -42,10 +45,7 @@ module.exports = {
             // allow omitting file extension on import statements
             'error',
             'ignorePackages',
-            {
-                js: 'never',
-                jsx: 'never',
-            },
+            { js: 'never', jsx: 'never', ts: 'never', tsx: 'never' },
         ],
         'react/prop-types': 'off', // prop types are to be checked with TypeScript
         'react/jsx-filename-extension': ['error', { extensions: ['.jsx', '.tsx'] }], // allow JSX on .jsx and .tsx files
@@ -54,7 +54,24 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'off',
         'react/no-unescaped-entities': 'off',
         'react/require-default-props': 'off',
+        '@typescript-eslint/no-unused-vars': 'warn',
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/no-use-before-define': ['error'],
+        '@typescript-eslint/no-empty-function': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
     },
+    overrides: [
+        {
+            // set the rule specifically for javascript files
+            files: ['*.js'],
+            rules: {
+                '@typescript-eslint/no-var-requires': 'off',
+                strict: 'off',
+            },
+        },
+    ],
     settings: {
         react: {
             version: 'detect', // Tells eslint-plugin-react to automatically detect the version of React to use

@@ -1,8 +1,7 @@
-import PropTypes from 'prop-types';
 import styles from './Home.module.css';
 import logo from '../../assets/images/react-logo.png';
 
-const Home = ({ title }) => {
+const Home = ({ title }: { title: string }) => {
     return (
         <div className={styles.home}>
             <div className={styles.imgBox}>
@@ -11,10 +10,6 @@ const Home = ({ title }) => {
             <div className={styles.title}>{title}</div>
         </div>
     );
-};
-
-Home.propTypes = {
-    title: PropTypes.string.isRequired,
 };
 
 export default Home;
