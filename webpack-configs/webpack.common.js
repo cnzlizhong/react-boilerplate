@@ -47,7 +47,12 @@ module.exports = (env) => {
                 {
                     test: /\.less$/i,
                     exclude: /\.module\.less$/,
-                    use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        'css-loader',
+                        'postcss-loader',
+                        'less-loader',
+                    ],
                 },
                 // Enable CSS module for *.module.css fiels.
                 {
@@ -60,6 +65,7 @@ module.exports = (env) => {
                                 modules: true,
                             },
                         },
+                        'postcss-loader',
                         'less-loader',
                     ],
                 },
