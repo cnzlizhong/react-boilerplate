@@ -54,7 +54,7 @@ module.exports = (env) => {
                         'less-loader',
                     ],
                 },
-                // Enable CSS module for *.module.css fiels.
+                // Enable CSS module for *.module.less fiels.
                 {
                     test: /\.module\.less$/,
                     use: [
