@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import styles from './Home.module.css';
+import styles from './Home.module.less';
 import logo from '../../assets/images/react-logo.png';
 
 const Home = ({ title }) => {
