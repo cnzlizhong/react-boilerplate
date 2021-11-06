@@ -49,7 +49,7 @@ module.exports = (env) => {
                     exclude: /\.module\.less$/,
                     use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
                 },
-                // Enable CSS module for *.module.css fiels.
+                // Enable CSS module for *.module.less fiels.
                 {
                     test: /\.module\.less$/,
                     use: [
