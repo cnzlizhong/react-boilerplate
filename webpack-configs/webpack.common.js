@@ -31,20 +31,11 @@ module.exports = (env) => {
                 },
                 {
                     test: /\.(woff|woff2|eot|ttf|svg)$/,
-                    use: {
-                        loader: 'url-loader',
-                        options: {
-                            name: 'assets/[name].[hash:8].[ext]',
-                            limit: 10000,
-                        },
-                    },
+                    type: 'asset',
                 },
                 {
                     test: /\.(jpg|png|gif)$/,
-                    loader: 'file-loader',
-                    options: {
-                        name: 'assets/[name].[hash:8].[ext]',
-                    },
+                    type: 'asset/resource',
                 },
                 {
                     test: /\.css$/i,

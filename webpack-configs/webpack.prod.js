@@ -12,6 +12,7 @@ module.exports = {
         filename: '[name].[contenthash:8].bundle.js',
         chunkFilename: '[name].[contenthash:8].chunk.js',
         clean: true,
+        assetModuleFilename: 'assets/[name].[hash:8][ext][query]',
     },
     optimization: {
         emitOnErrors: false,
