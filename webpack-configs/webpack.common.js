@@ -40,7 +40,7 @@ module.exports = (env) => {
                 {
                     test: /\.css$/i,
                     exclude: /\.module\.css$/,
-                    use: [MiniCssExtractPlugin.loader, 'css-loader'],
+                    use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
                 },
                 // Enable CSS module for *.module.css fiels.
                 {
