@@ -1,9 +1,9 @@
-import Home from './components/Home/Home';
+import Counter from './counter/Counter';
 
 const App = () => {
     return (
         <div id="app-container">
-            <Home title="This is a React app" />
+            <Counter />
         </div>
     );
 };
