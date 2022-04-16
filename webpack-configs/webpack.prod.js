@@ -5,13 +5,14 @@ const helpers = require('./helpers');
 
 module.exports = {
     mode: 'production',
-    entry: './src/index.jsx',
+    entry: './src/index.tsx',
     output: {
         path: helpers.root('build'),
         publicPath: '/',
         filename: '[name].[contenthash:8].bundle.js',
         chunkFilename: '[name].[contenthash:8].chunk.js',
         clean: true,
+        assetModuleFilename: 'assets/[name].[hash:8][ext][query]',
     },
     optimization: {
         emitOnErrors: false,

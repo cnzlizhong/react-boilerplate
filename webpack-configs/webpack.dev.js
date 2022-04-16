@@ -1,19 +1,19 @@
-const webpack = require('webpack');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const helpers = require('./helpers');
 
 module.exports = {
     mode: 'development',
-    entry: './src/index.jsx',
+    entry: './src/index.tsx',
     output: {
         path: helpers.root('dist'),
         publicPath: '/',
         filename: '[name].bundle.js',
         chunkFilename: '[name].chunk.js',
         clean: true,
+        assetModuleFilename: 'assets/[name].[hash:8][ext][query]',
     },
     // Enable hot module replacement and fast refresh on development mode.
-    plugins: [new webpack.HotModuleReplacementPlugin(), new ReactRefreshWebpackPlugin()],
+    plugins: [new ReactRefreshWebpackPlugin()],
     devtool: 'inline-source-map',
     devServer: {
         static: { directory: helpers.root('dist') },

@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const ReactFreshBabelPlugin = require('react-refresh/babel');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
@@ -13,7 +14,7 @@ module.exports = (env) => {
         module: {
             rules: [
                 {
-                    test: /\.(js)x?$/i,
+                    test: /\.(ts|js)x?$/i,
                     exclude: /node_modules/,
                     use: {
                         loader: 'babel-loader',
@@ -21,6 +22,7 @@ module.exports = (env) => {
                             presets: [
                                 '@babel/preset-env',
                                 ['@babel/preset-react', { runtime: 'automatic' }],
+                                '@babel/preset-typescript',
                             ],
                             // Enable fast refresh on development mode.
                             plugins: [isEnvDevelopment && ReactFreshBabelPlugin].filter(Boolean),
@@ -29,25 +31,16 @@ module.exports = (env) => {
                 },
                 {
                     test: /\.(woff|woff2|eot|ttf|svg)$/,
-                    use: {
-                        loader: 'url-loader',
-                        options: {
-                            name: 'assets/[name].[hash:8].[ext]',
-                            limit: 10000,
-                        },
-                    },
+                    type: 'asset',
                 },
                 {
                     test: /\.(jpg|png|gif)$/,
-                    loader: 'file-loader',
-                    options: {
-                        name: 'assets/[name].[hash:8].[ext]',
-                    },
+                    type: 'asset/resource',
                 },
                 {
                     test: /\.css$/i,
                     exclude: /\.module\.css$/,
-                    use: [MiniCssExtractPlugin.loader, 'css-loader'],
+                    use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
                 },
                 // Enable CSS module for *.module.css fiels.
                 {
@@ -65,7 +58,7 @@ module.exports = (env) => {
             ],
         },
         resolve: {
-            extensions: ['.jsx', '.js'],
+            extensions: ['.tsx', '.ts', '.js'],
             alias: {
                 process: 'process/browser',
             },
@@ -88,6 +81,10 @@ module.exports = (env) => {
             }),
             new CopyWebpackPlugin({
                 patterns: [{ from: 'src/assets/icons', to: 'assets' }],
+            }),
+            // Check ts types when building
+            new ForkTsCheckerWebpackPlugin({
+                async: false, // Make sure build only emits code after ts checking finishes.
             }),
             new ESLintPlugin({
                 extensions: ['jsx', 'js'],
