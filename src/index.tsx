@@ -1,7 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { store } from './app/store';
+import { store } from './store/store';
 import App from './App';
 import './assets/styles/global-styles.css';
 

@@ -1,9 +1,9 @@
-import Counter from './counter/Counter';
+import Counter from './features/counter/Counter';
 
 const App = () => {
     return (
-        <div className="h-full bg-slate-700">
-            <Home title="This is a React app" />
+        <div className="h-full">
+            <Counter />
         </div>
     );
 };
