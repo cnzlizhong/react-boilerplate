@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { CaseReducer, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface CounterState {
     value: number;
@@ -8,23 +8,29 @@ const initialState: CounterState = {
     value: 0,
 };
 
+const depositedReducer: CaseReducer<CounterState, PayloadAction<number>> = (state, action) => {
+    state.value += action.payload;
+};
+
+const withdrawnReducer: CaseReducer<CounterState> = (state) => {
+    state.value -= 20;
+};
+
+const bankRuptedReducer: CaseReducer<CounterState> = (state) => {
+    state.value = 0;
+};
+
 const counterSlice = createSlice({
     name: 'couter',
     initialState,
     reducers: {
+        // Immer takes care of the immutability.
         // increment
-        deposited: (state, action: PayloadAction<number>) => {
-            // Immer takes care of the immutability.
-            state.value += action.payload;
-        },
+        deposited: depositedReducer,
         // withdraw
-        withdrawn: (state) => {
-            state.value -= 20;
-        },
+        withdrawn: withdrawnReducer,
         // bankRupted
-        bankRupted: (state) => {
-            state.value = 0;
-        },
+        bankRupted: bankRuptedReducer,
     },
 });
 
