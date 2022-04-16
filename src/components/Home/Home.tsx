@@ -1,13 +1,12 @@
-import styles from './Home.module.css';
 import logo from '../../assets/images/react-logo.png';
 
 const Home = ({ title }: { title: string }) => {
     return (
-        <div className={styles.home}>
-            <div className={styles.imgBox}>
-                <img src={logo} alt="logo" />
+        <div className="h-full flex flex-col items-center justify-center">
+            <div className="overflow-hidden w-96 h-96">
+                <img src={logo} alt="logo" className="w-full h-full" />
             </div>
-            <div className={styles.title}>{title}</div>
+            <div className="text-white text-5xl">{title}</div>
         </div>
     );
 };
