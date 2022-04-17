@@ -16,10 +16,6 @@ const withdrawnReducer: CaseReducer<CounterState> = (state) => {
     state.value -= 20;
 };
 
-const bankRuptedReducer: CaseReducer<CounterState> = (state) => {
-    state.value = 0;
-};
-
 const counterSlice = createSlice({
     name: 'couter',
     initialState,
@@ -30,7 +26,9 @@ const counterSlice = createSlice({
         // withdraw
         withdrawn: withdrawnReducer,
         // bankRupted
-        bankRupted: bankRuptedReducer,
+        bankRupted: (state) => {
+            state.value = 0;
+        },
     },
 });
 
